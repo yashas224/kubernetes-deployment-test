@@ -1,18 +1,18 @@
-docker build -t yashassamaga/multiclient:latest -t yashassamaga/multiclient:$SHA ./client
-docker build -t yashassamaga/multiserver:latest -t yashassamaga/multiserver:$SHA ./server
-docker build -t yashassamaga/multiworker:latest -t yashassamaga/multiworker:$SHA ./worker
+docker build -t yashassamaga/multi-client:latest -t yashassamaga/multi-client:$SHA ./client
+docker build -t yashassamaga/multi-server:latest -t yashassamaga/multi-server:$SHA ./server
+docker build -t yashassamaga/multi-worker:latest -t yashassamaga/multi-worker:$SHA ./worker
 
-docker push  yashassamaga/multiclient:latest
-docker push  yashassamaga/multiserver:latest
-docker push  yashassamaga/multiworker:latest
+docker push  yashassamaga/multi-client:latest
+docker push  yashassamaga/multi-server:latest
+docker push  yashassamaga/multi-worker:latest
 
-docker push  yashassamaga/multiclient:$SHA
-docker push  yashassamaga/multiserver:$SHA
-docker push  yashassamaga/multiworker:$SHA
+docker push  yashassamaga/multi-client:$SHA
+docker push  yashassamaga/multi-server:$SHA
+docker push  yashassamaga/multi-worker:$SHA
 
 kubectl apply -f k8s
 
-kubectl set image deployments/client-deployment client=yashassamaga/multiclient:$SHA
-kubectl set image deployments/server-deployment server=yashassamaga/multiserver:$SHA
-kubectl set image deployments/worker-deployment worker=yashassamaga/multiworker:$SHA
+kubectl set image deployments/client-deployment client=yashassamaga/multi-client:$SHA
+kubectl set image deployments/server-deployment server=yashassamaga/multi-server:$SHA
+kubectl set image deployments/worker-deployment worker=yashassamaga/multi-worker:$SHA
 
